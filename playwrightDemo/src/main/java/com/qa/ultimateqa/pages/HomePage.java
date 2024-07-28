@@ -27,5 +27,7 @@ public class HomePage {
     }
 
 
-
+    public String getPageTitle() {
+        return page.title();
+    }
 }

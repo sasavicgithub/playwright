@@ -11,12 +11,12 @@ import java.util.Properties;
 
 public class BaseTest {
 
-
     PlaywrightFactory pf;
-    Page page;
+    protected Page page;
     protected Properties prop;
     protected HomePage homePage;
     protected MainPage mainPage;
+
     @BeforeTest
     public void setup(){
         pf = new PlaywrightFactory();
@@ -30,6 +30,7 @@ public class BaseTest {
         String password = prop.getProperty("loginPassword").trim();
         homePage.login(username, password);
 
+        System.out.println("Setup completed: HomePage and MainPage initialized.");
     }
 
     @AfterTest

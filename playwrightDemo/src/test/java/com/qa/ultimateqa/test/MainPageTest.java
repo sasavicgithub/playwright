@@ -2,34 +2,43 @@ package com.qa.ultimateqa.test;
 
 import com.qa.ultimateqa.base.BaseTest;
 import com.qa.ultimateqa.pages.MainPage;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-
 public class MainPageTest extends BaseTest {
+    MainPage mainPage;
 
-    @Test
-    public void testProductSortFilterClick() {
-       mainPage.productSortFilter();
-        // Add assertions if needed to verify the result of clicking the product sort filter
+    @BeforeClass
+    public void setupMainPage() {
+        mainPage = new MainPage(page);
     }
 
     @Test
     public void testGetProductSortFilterText() {
-        String text = mainPage.getProductSortFilter();
-        // Replace "Expected Text" with the actual expected text
-      //  Assert.assertEquals(text, "Expected Text");
-    }
-
-    @Test
-    public void testTwitterLinkClick() {
-        mainPage.clickTwitterLink();
-        // Add assertions if needed to verify the result of clicking the Twitter link
+        System.out.println("MainPage instance: " + mainPage);
+        String filterText = mainPage.getProductSortFilter();
+        Assert.assertNotNull(filterText, "Filter text is null");
     }
 
     @Test
     public void testGetTwitterLinkText() {
-        String text = mainPage.getTwitterLinkText();
-     //  Assert.assertEquals(text, "Twitter");
+        System.out.println("MainPage instance: " + mainPage);
+        String twitterText = mainPage.getTwitterLinkText();
+        Assert.assertNotNull(twitterText, "Twitter text is null");
+    }
+
+    @Test
+    public void testProductSortFilterClick() {
+        System.out.println("MainPage instance: " + mainPage);
+        mainPage.productSortFilter();
+        // Add necessary assertions to verify the click action
+    }
+
+    @Test
+    public void testTwitterLinkClick() {
+        System.out.println("MainPage instance: " + mainPage);
+        mainPage.clickTwitterLink();
+        // Add necessary assertions to verify the click action
     }
 }

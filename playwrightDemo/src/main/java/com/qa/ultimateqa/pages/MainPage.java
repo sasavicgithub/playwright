@@ -4,6 +4,7 @@ import com.microsoft.playwright.Page;
 
 public class MainPage{
     Page mainpage;
+    private Page page;
 
     // locators
     private String productSort = ".product_sort_container";

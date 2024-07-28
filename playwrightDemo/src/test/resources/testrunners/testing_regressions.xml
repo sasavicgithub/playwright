@@ -2,10 +2,17 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="Regresion TEST" verbose="4">
+    <listeners>
+        <listener class-name="com.qa.ultimateqa.extentReportListeners.ExtentReportListener"></listener>
+    </listeners>
     <test name="Home Page Test">
         <classes>
             <class name="com.qa.ultimateqa.test.HomePageTest"/>
         </classes>
     </test>
-    
+    <test name="Main Page Test">
+        <classes>
+            <class name="com.qa.ultimateqa.test.MainPageTest"/>
+        </classes>
+    </test>
 </suite>

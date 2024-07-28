@@ -2,10 +2,12 @@ package com.qa.ultimateqa;
 
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.BrowserType.LaunchOptions;
+import lombok.Getter;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Properties;
 
 
@@ -17,8 +19,14 @@ public class PlaywrightFactory {
     Properties prop;
 
 
-
-    Page page;
+    /**
+     * -- GETTER --
+     *  Get the current Playwright page.
+     *
+     * @return The current Page.
+     */
+    @Getter
+    static Page page;
 
     public Page initBrowser(Properties prop){
         String browserName = prop.getProperty("browser").trim();
@@ -64,5 +72,17 @@ public class PlaywrightFactory {
             throw new RuntimeException(e);
         }
         return prop;
+    }
+    /**
+     * take a screenshot
+     */
+
+    public static String takeScreenshot(){
+        String path = System.getProperty("user.dir") + "/screenshot/" + System.currentTimeMillis() + ".png";
+
+        getPage().screenshot(new  Page.ScreenshotOptions()
+                .setPath(Paths.get(path))
+                .setFullPage(true));
+        return path;
     }
 }
