@@ -1,6 +1,8 @@
 package com.qa.ultimateqa;
 
 import com.microsoft.playwright.*;
+import com.microsoft.playwright.Browser;
+import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.BrowserType.LaunchOptions;
 import lombok.Getter;
 
@@ -15,9 +17,23 @@ public class PlaywrightFactory {
     Playwright playwright;
     Browser browser;
     BrowserContext browserContext;
-
     Properties prop;
+    /**
+     * initialize properties from config file
+     */
 
+    public Properties init_prop(){
+        try {
+            FileInputStream ip = new FileInputStream("./src/test/resources/config.properties");
+            prop = new Properties();
+            prop.load(ip);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return prop;
+    }
 
     /**
      * -- GETTER --
@@ -57,22 +73,7 @@ public class PlaywrightFactory {
         return page;
 
     }
-    /**
-     * initialize properties from config file
-     */
 
-    public Properties init_prop(){
-        try {
-            FileInputStream ip = new FileInputStream("./src/test/resources/config.properties");
-            prop = new Properties();
-            prop.load(ip);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return prop;
-    }
     /**
      * take a screenshot
      */
